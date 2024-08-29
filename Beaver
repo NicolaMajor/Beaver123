@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beavercorn Email Signup</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            background-color: hotpink;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        input[type="email"] {
+            font-size: 2em;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            margin: 20px 0;
+        }
+
+        .fun-button {
+            background: url('button-image.jpg') no-repeat center;
+            background-size: contain;
+            border: none;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .beavercorn {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            margin-top: 50px;
+            animation: dance 2s infinite;
+        }
+
+        @keyframes dance {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <h1>Type your email address here</h1>
+        <input type="email" id="email-input" placeholder="Email Address">
+        <button class="fun-button" onclick="showBeavercorn()"></button>
+    </div>
+
+    <div id="beavercorn-container" class="hidden">
+        <img src="beavercorn-image.webp" alt="Dancing Beavercorn" class="beavercorn">
+    </div>
+
+    <canvas class="sparkles"></canvas>
+
+    <script>
+        // Create sparkles effect
+        const canvas = document.querySelector('.sparkles');
+        const ctx = canvas.getContext('2d');
+        let sparkles = [];
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        document.addEventListener('mousemove', (e) => {
+            sparkles.push({ x: e.clientX, y: e.clientY, alpha: 1, size: Math.random() * 5 + 2 });
+        });
+
+        function animateSparkles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < sparkles.length; i++) {
+                const sparkle = sparkles[i];
+                ctx.fillStyle = `rgba(255, 255, 255, ${sparkle.alpha})`;
+                ctx.beginPath();
+                ctx.arc(sparkle.x, sparkle.y, sparkle.size, 0, Math.PI * 2);
+                ctx.fill();
+                sparkle.alpha -= 0.02;
+                sparkle.size -= 0.1;
+                if (sparkle.alpha <= 0 || sparkle.size <= 0) {
+                    sparkles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateSparkles);
+        }
+
+        animateSparkles();
+
+        // Show Beavercorn when button is clicked
+        function showBeavercorn() {
+            const emailInput = document.getElementById('email-input').value;
+            if (emailInput) {
+                document.getElementById('form-container').classList.add('hidden');
+                document.getElementById('beavercorn-container').classList.remove('hidden');
+            } else {
+                alert("Please enter a valid email address.");
+            }
+        }
+    </script>
+</body>
+</html>
