@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beavercorn Dance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Well hello there!</h1>
+        <button id="danceButton">Press to Dance!</button>
+        <img src="beavercorn.webp" alt="Beavercorn" id="beavercorn">
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
