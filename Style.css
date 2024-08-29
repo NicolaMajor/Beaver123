@@ -1,17 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beavercorn Dance</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Well hello there!</h1>
-        <button id="danceButton">Press to Dance!</button>
-        <img src="beavercorn.webp" alt="Beavercorn" id="beavercorn">
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+body {
+    background-color: hotpink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+#beavercorn {
+    display: none;
+    width: 200px;
+    margin-top: 20px;
+}
+
+.dance {
+    animation: danceAnimation 1s infinite;
+}
+
+@keyframes danceAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
